@@ -1,0 +1,20 @@
+﻿@using BootstrapMVC.Helpers
+@using System.Diagnostics
+
+@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+    var message = string.Format("Error in Controller {0}, Action method {1}. Exception: {2}",
+        Model.ControllerName, Model.ActionName, Model.Exception.Message);
+    if (Model.Exception.InnerException != null)
+    {
+        message += "; Inner exception: " + Model.Exception.InnerException.Message;
+    }
+    TraceHelper.MyTrace(TraceLevel.Error, message);
+}
+<div style=" width: 1100px; height:100px;  margin: 0; padding: 0;"></div>
+<hgroup class="title">
+    <h1 class="error">Error.</h1>
+    <h2 class="error">An error occurred while processing your request.</h2>
+</hgroup>

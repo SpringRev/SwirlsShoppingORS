@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StoresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="View_ListItem">
+    <Key>
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Price" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="StoresEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="View_ListItem" EntityType="Self.View_ListItem" />
+    <EntitySet Name="CATEGORies" EntityType="StoresModel.CATEGORY" />
+    <EntitySet Name="Posts" EntityType="StoresModel.Post" />
+    <EntitySet Name="Titles" EntityType="StoresModel.Title" />
+    <AssociationSet Name="FK_Title_Category" Association="StoresModel.FK_Title_Category">
+      <End Role="CATEGORY" EntitySet="CATEGORies" />
+      <End Role="Title" EntitySet="Titles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_Post" Association="StoresModel.FK_Post_Post">
+      <End Role="Post" EntitySet="Posts" />
+      <End Role="Post1" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_Title" Association="StoresModel.FK_Post_Title">
+      <End Role="Title" EntitySet="Titles" />
+      <End Role="Post" EntitySet="Posts" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Titles" Relationship="StoresModel.FK_Title_Category" FromRole="CATEGORY" ToRole="Title" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PostDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MasterPostID" Type="Int32" />
+    <Property Name="TitleID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Post1" Relationship="StoresModel.FK_Post_Post" FromRole="Post" ToRole="Post1" />
+    <NavigationProperty Name="Post2" Relationship="StoresModel.FK_Post_Post" FromRole="Post1" ToRole="Post" />
+    <NavigationProperty Name="Title" Relationship="StoresModel.FK_Post_Title" FromRole="Post" ToRole="Title" />
+  </EntityType>
+  <EntityType Name="Title">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CATEGORY" Relationship="StoresModel.FK_Title_Category" FromRole="Title" ToRole="CATEGORY" />
+    <NavigationProperty Name="Posts" Relationship="StoresModel.FK_Post_Title" FromRole="Title" ToRole="Post" />
+  </EntityType>
+  <Association Name="FK_Title_Category">
+    <End Type="StoresModel.CATEGORY" Role="CATEGORY" Multiplicity="1" />
+    <End Type="StoresModel.Title" Role="Title" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Title">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_Post">
+    <End Type="StoresModel.Post" Role="Post" Multiplicity="0..1" />
+    <End Type="StoresModel.Post" Role="Post1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Post1">
+        <PropertyRef Name="MasterPostID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_Title">
+    <End Type="StoresModel.Title" Role="Title" Multiplicity="1" />
+    <End Type="StoresModel.Post" Role="Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Title">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="TitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

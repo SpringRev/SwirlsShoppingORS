@@ -1,0 +1,88 @@
+﻿@*@model IEnumerable<BootstrapMVC.Models.Post>*@
+           @model List <BootstrapMVC.Models.Post>
+@using BootstrapMVC.Helpers
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+    <div style=" width: 1100px; height:100px;  margin: 0; padding: 0;"></div>
+
+
+  @(Html.TreeView(Model.Where(p => (p.MasterPostID == null)))
+    .EmptyContent("No posts yet!")
+    .Children(m => m.Post1)
+    .HtmlAttributes(new { id = "tree" })
+          //.ChildrenHtmlAttributes(new { @class = "subItem" })
+    .ItemText(m => m.PostDetail)
+    .ItemTemplate(
+        @<textarea rows="2" cols="40">
+            @item.PostDetail
+        </textarea>)
+    @*.ItemTemplate(
+    @<text>
+        <a href="#@item.TitleID">@item.Title</a>
+    </text>)*@
+)
+
+
+
+
+
+    @*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PostDetail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Post2.PostDetail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title.Name)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostDetail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Post2.PostDetail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            </td>
+        </tr>
+    }
+
+        
+    
+    </table>*@
+</body>
+</html>

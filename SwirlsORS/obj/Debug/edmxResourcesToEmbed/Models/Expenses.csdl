@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EXPENZAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CATEGORy">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RECURRING" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="EXPENSEs" Relationship="Self.FK__EXPENSE__CATEGOR__164452B1" FromRole="CATEGORies" ToRole="EXPENSEs" />
+  </EntityType>
+  <EntityType Name="EXPENSEDETAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="EXPENSEID" Type="Int32" Nullable="false" />
+    <Property Name="ITEMID" Type="Int32" Nullable="false" />
+    <Property Name="QUANTITY" Type="Int32" />
+    <Property Name="PRICE" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CALCULATEDPRICE" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EXPENS" Relationship="Self.FK__EXPENSEDE__EXPEN__1A14E395" FromRole="EXPENSEDETAILs" ToRole="EXPENSEs" />
+    <NavigationProperty Name="ITEM" Relationship="Self.FK__EXPENSEDE__ITEMI__1B0907CE" FromRole="EXPENSEDETAILs" ToRole="ITEMs" />
+  </EntityType>
+  <EntityType Name="EXPENS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="CATEGORYID" Type="Int32" Nullable="false" />
+    <Property Name="PROVIDERID" Type="Int32" Nullable="false" />
+    <Property Name="PRICE" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="DATE" Type="DateTime" Precision="3" />
+    <Property Name="TIMESTAMP" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CATEGORy" Relationship="Self.FK__EXPENSE__CATEGOR__164452B1" FromRole="EXPENSEs" ToRole="CATEGORies" />
+    <NavigationProperty Name="EXPENSEDETAILs" Relationship="Self.FK__EXPENSEDE__EXPEN__1A14E395" FromRole="EXPENSEs" ToRole="EXPENSEDETAILs" />
+    <NavigationProperty Name="PROVIDER" Relationship="Self.FK__EXPENSE__PROVIDE__173876EA" FromRole="EXPENSEs" ToRole="PROVIDERs" />
+  </EntityType>
+  <EntityType Name="ITEM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="EXPENSEDETAILs" Relationship="Self.FK__EXPENSEDE__ITEMI__1B0907CE" FromRole="ITEMs" ToRole="EXPENSEDETAILs" />
+  </EntityType>
+  <EntityType Name="PROVIDER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EXPENSEs" Relationship="Self.FK__EXPENSE__PROVIDE__173876EA" FromRole="PROVIDERs" ToRole="EXPENSEs" />
+  </EntityType>
+  <Association Name="FK__EXPENSE__CATEGOR__164452B1">
+    <End Role="CATEGORies" Type="Self.CATEGORy" Multiplicity="1" />
+    <End Role="EXPENSEs" Type="Self.EXPENS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORies">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXPENSEs">
+        <PropertyRef Name="CATEGORYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EXPENSEDE__EXPEN__1A14E395">
+    <End Role="EXPENSEs" Type="Self.EXPENS" Multiplicity="1" />
+    <End Role="EXPENSEDETAILs" Type="Self.EXPENSEDETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EXPENSEs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXPENSEDETAILs">
+        <PropertyRef Name="EXPENSEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EXPENSEDE__ITEMI__1B0907CE">
+    <End Role="ITEMs" Type="Self.ITEM" Multiplicity="1" />
+    <End Role="EXPENSEDETAILs" Type="Self.EXPENSEDETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ITEMs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXPENSEDETAILs">
+        <PropertyRef Name="ITEMID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EXPENSE__PROVIDE__173876EA">
+    <End Role="PROVIDERs" Type="Self.PROVIDER" Multiplicity="1" />
+    <End Role="EXPENSEs" Type="Self.EXPENS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVIDERs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXPENSEs">
+        <PropertyRef Name="PROVIDERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EXPENZAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CATEGORies" EntityType="Self.CATEGORy" />
+    <EntitySet Name="EXPENSEDETAILs" EntityType="Self.EXPENSEDETAIL" />
+    <EntitySet Name="EXPENSEs" EntityType="Self.EXPENS" />
+    <EntitySet Name="ITEMs" EntityType="Self.ITEM" />
+    <EntitySet Name="PROVIDERs" EntityType="Self.PROVIDER" />
+    <AssociationSet Name="FK__EXPENSE__CATEGOR__164452B1" Association="Self.FK__EXPENSE__CATEGOR__164452B1">
+      <End Role="CATEGORies" EntitySet="CATEGORies" />
+      <End Role="EXPENSEs" EntitySet="EXPENSEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EXPENSEDE__EXPEN__1A14E395" Association="Self.FK__EXPENSEDE__EXPEN__1A14E395">
+      <End Role="EXPENSEs" EntitySet="EXPENSEs" />
+      <End Role="EXPENSEDETAILs" EntitySet="EXPENSEDETAILs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EXPENSEDE__ITEMI__1B0907CE" Association="Self.FK__EXPENSEDE__ITEMI__1B0907CE">
+      <End Role="ITEMs" EntitySet="ITEMs" />
+      <End Role="EXPENSEDETAILs" EntitySet="EXPENSEDETAILs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EXPENSE__PROVIDE__173876EA" Association="Self.FK__EXPENSE__PROVIDE__173876EA">
+      <End Role="PROVIDERs" EntitySet="PROVIDERs" />
+      <End Role="EXPENSEs" EntitySet="EXPENSEs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

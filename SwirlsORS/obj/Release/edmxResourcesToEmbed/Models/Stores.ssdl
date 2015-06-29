@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StoresModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostDetail" Type="varchar(max)" />
+    <Property Name="MasterPostID" Type="int" />
+    <Property Name="TitleID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Image" Type="varbinary(max)" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="LastUpdated" Type="datetime" />
+    <Property Name="Details" Type="xml" />
+  </EntityType>
+  <EntityType Name="Title">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Stores.dbo.View_ListItem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_ListItem">
+    <Key>
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Price" />
+    </Key>
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Post_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+    <End Role="Post1" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Post1">
+        <PropertyRef Name="MasterPostID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_Title">
+    <End Role="Title" Type="Self.Title" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Title">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="TitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Title_Category">
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
+    <End Role="Title" Type="Self.Title" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Title">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StoresModelStoreContainer">
+    <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="View_ListItem" EntityType="Self.View_ListItem" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_ListItem].[Name] AS [Name], 
+    [View_ListItem].[Price] AS [Price]
+    FROM [dbo].[View_ListItem] AS [View_ListItem]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Post_Post" Association="Self.FK_Post_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Post1" EntitySet="Post" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_Title" Association="Self.FK_Post_Title">
+      <End Role="Title" EntitySet="Title" />
+      <End Role="Post" EntitySet="Post" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Title_Category" Association="Self.FK_Title_Category">
+      <End Role="CATEGORY" EntitySet="CATEGORY" />
+      <End Role="Title" EntitySet="Title" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

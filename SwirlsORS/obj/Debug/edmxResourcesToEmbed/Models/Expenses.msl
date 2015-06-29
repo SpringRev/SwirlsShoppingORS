@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EXPENZAModelStoreContainer" CdmEntityContainer="EXPENZAEntities">
+    <EntitySetMapping Name="CATEGORies">
+      <EntityTypeMapping TypeName="EXPENZAModel.CATEGORy">
+        <MappingFragment StoreEntitySet="CATEGORies">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="RECURRING" ColumnName="RECURRING" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXPENSEDETAILs">
+      <EntityTypeMapping TypeName="EXPENZAModel.EXPENSEDETAIL">
+        <MappingFragment StoreEntitySet="EXPENSEDETAILs">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EXPENSEID" ColumnName="EXPENSEID" />
+          <ScalarProperty Name="ITEMID" ColumnName="ITEMID" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="CALCULATEDPRICE" ColumnName="CALCULATEDPRICE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXPENSEs">
+      <EntityTypeMapping TypeName="EXPENZAModel.EXPENS">
+        <MappingFragment StoreEntitySet="EXPENSEs">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CATEGORYID" ColumnName="CATEGORYID" />
+          <ScalarProperty Name="PROVIDERID" ColumnName="PROVIDERID" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ITEMs">
+      <EntityTypeMapping TypeName="EXPENZAModel.ITEM">
+        <MappingFragment StoreEntitySet="ITEMs">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROVIDERs">
+      <EntityTypeMapping TypeName="EXPENZAModel.PROVIDER">
+        <MappingFragment StoreEntitySet="PROVIDERs">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

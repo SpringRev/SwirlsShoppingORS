@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\priyvasanthan\Documents\Visual Studio 2013\Projects\BootstrapMVC_IISExpress\UnitTestProject1\bin\Debug\UnitTestProject1.exe" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2015-01-27" time="20:20:02">
+  <environment nunit-version="2.6.4.14350" clr-version="2.0.50727.8009" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Users\priyvasanthan\NUnit-2.6.4\NUnit-2.6.4\bin" machine-name="REVATHIS" user="priyvasanthan" user-domain="Revathis" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Users\priyvasanthan\Documents\Visual Studio 2013\Projects\BootstrapMVC_IISExpress\UnitTestProject1\bin\Debug\UnitTestProject1.exe" executed="True" result="Success" success="True" time="0.138" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="UnitTestProject1" executed="True" result="Success" success="True" time="0.114" asserts="0">
+        <results>
+          <test-suite type="TestFixture" name="UnitTest1" executed="True" result="Success" success="True" time="0.070" asserts="0">
+            <results>
+              <test-case name="UnitTestProject1.UnitTest1.TestStoresIndex" executed="True" result="Success" success="True" time="0.050" asserts="1" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

@@ -1,0 +1,172 @@
+﻿@model IEnumerable<BootstrapMVC.Models.Product>
+@using System.Drawing;
+@using System.IO;
+@using System.Drawing.Imaging;
+@using Glimpse.Mvc;
+@using Glimpse.Mvc.Html;
+@using Glimpse.AspNet;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+@*@Styles.Render("~/Content/bootstrap.css")
+@Scripts.Render("~/Scripts/bootstrap.js");*@
+@*@section scripts
+{    
+<script src="http://localhost:28316/awesome/Awesome.js"></script>
+}*@
+ 
+<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+<script type="text/javascript">
+    $(document).ready(
+        function()
+        {
+            $("#btnSearch").click(function ()
+            {
+                document.location.href = "Stores?searchText=" + $("#searchText").val() + "&priceMinRange=" + $("#drpPriceMinRange").val() + "&priceMaxRange=" + $("#drpPriceMaxRange").val();
+            });
+        });
+
+</script>
+<h2>Item Index</h2>
+<form name="indexForm">
+    @*@using (Html.BeginForm("Index", "Stores", FormMethod.Post,new { id="newIndex" }))
+        {*@
+    <fieldset>
+        <legend>Search</legend>
+        <p>
+            <label>Name </label>
+            <input type="text" id="searchText" />
+            <label>Min </label>
+            <select id="drpPriceMinRange">
+                <option value="0" selected>0</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+                <option value="10000">10000</option>
+            </select>
+            <label>Max </label>
+            <select id="drpPriceMaxRange">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+                <option value="10000">10000</option>
+                <option value="250000" selected>250000</option>
+            </select>
+            <select id="drpSearchOption" style="display:none">
+                <option value="Name">Name</option>
+                <option value="Price">Price</option>
+            </select>
+           
+            <input type="button" id="btnSearch" value="Search" />
+            @*@Html.ActionLink("Search", "Index", new { searchOption = "Name", searchText = "Deepa" })*@
+        </p>
+        <br />
+    </fieldset>
+
+    @*}*@
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Name)*@
+                @Html.ActionLink("Name", "Index", new { sortBy = "Name" })
+                @*@Html.ActionLink("Name", "Index", new { id = 1 })*@
+                @*@Html.ActionLink("Name", "Sort", new { id = product.ID })*@
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Price)*@
+                @Html.ActionLink("Price", "Index", new { sortBy = "Price" })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastUpdated)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Details)
+                </th>*@
+            <th></th>
+            @*<th><label>Local Server Image</label></th>*@
+        </tr>
+
+        @foreach (var product in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => product.Price)
+                </td>
+                <td>
+
+                    @if (product.Image != null)
+                    {
+                        <img src="~/Stores/GetImage?Id=@product.ID " style="height:50px;width:70px" />
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => product.Image)
+                    }
+
+
+
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => product.DateCreated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => product.LastUpdated)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => product.Details)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = product.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = product.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = product.ID })
+                </td>
+                @*<td>
+
+                    @if (product.Image != null)
+                    {
+                        string imageName = @product.Name + ".JPG";
+                        <img src="Content/pics/@imageName" style="height:50px;width:70px" />
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => product.Image)
+                    }
+
+                </td>*@
+            </tr>
+        }
+
+    </table>
+    <table>
+        <tr>
+            <td>
+                @Html.GlimpseClient()
+            </td>
+        </tr>
+    </table>
+  
+</form>
+

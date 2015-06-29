@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="BootstrapMVC.StoresWCFService" CodeBehind="StoresWCFService.svc.cs" %>

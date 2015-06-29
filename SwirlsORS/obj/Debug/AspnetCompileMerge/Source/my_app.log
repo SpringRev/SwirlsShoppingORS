@@ -1,0 +1,29 @@
+2014-12-25 19:43:04,893 [76] DEBUG PayPal.Api.OAuthTokenCredential [(null)] 
+  ClientID:       AX7PnRDq0V8j1dykcDgj9VNSmlKpMZPCv9igE5d7I0xXAaIkM0Yafqug7182
+  ClientSecret:   ENdVoRDo4VVpAKUHBG0TTLPh72zWoUkywl8BKmQLRQULydq2nyrIt_fnNiDl
+  Base64ClientId: QVg3UG5SRHEwVjhqMWR5a2NEZ2o5Vk5TbWxLcE1aUEN2OWlnRTVkN0kweFhBYUlrTTBZYWZxdWc3MTgyOkVOZFZvUkRvNFZWcEFLVUhCRzBUVExQaDcyeldvVWt5d2w4QkttUUxSUVVMeWRxMm55ckl0X2ZuTmlEbA==
+2014-12-25 19:43:05,614 [76] DEBUG PayPal.Api.OAuthTokenCredential [(null)] Accept:*/*
+2014-12-25 19:43:05,615 [76] DEBUG PayPal.Api.OAuthTokenCredential [(null)] Content-Type:application/x-www-form-urlencoded
+2014-12-25 19:43:05,616 [76] DEBUG PayPal.Api.OAuthTokenCredential [(null)] User-Agent:PayPalSDK/PayPal-NET-SDK 1.1.0 (lang=DOTNET;v=4.5;clr=4.0.30319.34014;bit=64;os=Microsoft Windows NT 6.2.9200.0)
+2014-12-25 19:43:05,616 [76] DEBUG PayPal.Api.OAuthTokenCredential [(null)] Authorization:Basic QVg3UG5SRHEwVjhqMWR5a2NEZ2o5Vk5TbWxLcE1aUEN2OWlnRTVkN0kweFhBYUlrTTBZYWZxdWc3MTgyOkVOZFZvUkRvNFZWcEFLVUhCRzBUVExQaDcyeldvVWt5d2w4QkttUUxSUVVMeWRxMm55ckl0X2ZuTmlEbA==
+2014-12-25 19:43:05,791 [76] DEBUG PayPal.Api.HttpConnection [(null)] grant_type=client_credentials
+2014-12-25 19:43:07,425 [76] DEBUG PayPal.Api.HttpConnection [(null)] Service response
+2014-12-25 19:43:07,425 [76] DEBUG PayPal.Api.HttpConnection [(null)] {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/services/invoicing https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","access_token":"A015TajfY7ySWJtD2322uHXdDrdEbXdmk2wTUxDLXBKfq7c","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":28800}
+2015-01-11 09:43:36,197 [6] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-11 10:37:15,617 [26] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-11 10:37:15,617 [29] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-11 10:37:15,617 [33] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-11 10:37:15,617 [21] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-11 10:37:15,617 [28] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-12 16:07:58,617 [13] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-14 11:09:10,723 [6] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-14 11:11:50,061 [16] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-14 18:22:51,117 [11] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-14 18:26:28,430 [18] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-14 18:28:07,225 [15] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-14 18:30:27,503 [17] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-14 18:54:51,638 [21] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-14 18:55:31,396 [23] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-14 18:57:37,680 [19] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-14 19:00:48,889 [20] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index
+2015-01-14 19:01:12,163 [30] INFO  BootstrapMVC.Controllers.StoresController [(null)] Inside  Store Index

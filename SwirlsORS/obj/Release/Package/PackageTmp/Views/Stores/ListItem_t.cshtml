@@ -1,0 +1,123 @@
+﻿@model IEnumerable<BootstrapMVC.Models.Product>
+@using System.Collections.Generic;
+@using BootstrapMVC.Models;
+
+@{
+    ViewBag.Title = "List Items Thumbnails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int productLength = Model.Count();
+    int productCount = 0;
+    List<Product> productList = Model.ToList();
+
+}
+
+
+@*@for (int i = 0; i <= (productLength / 4); i++)
+{
+    <table style="width:1100px; height:200px;border:thin">
+        @for (int j = 0; j < 4; j++)
+        {
+
+            if (productCount != productLength)
+            {
+                <tr style="width:300px; height:200px;float:left">
+                    <td>
+                        @if (@productList[productCount].Image != null)
+                        {
+                        <img class="absolute-center" src="./GetImage?Id=@productList[productCount].ID" style="width:200px;height:100px" />
+                        }
+                        else
+                        {
+                        @productList[productCount].Image
+                        }
+                    </td>
+                    <td>
+                        <div class="title">@productList[productCount].Name</div>
+
+                        <span class="price">
+                            $ @productList[productCount].Price
+                        </span>
+                    </td>
+                </tr>
+                        productCount++;
+
+            }
+        }
+
+    </table>
+
+}*@
+
+
+
+<div style=" width: 1100px; height:100px;  margin: 0; padding: 0;"></div>
+    @for (int i = 0; i <= (productLength / 4); i++)
+    {
+        <div class="widget-wrapper" style="width: 1100px; height:150px">
+            @for (int j = 0; j < 4; j++)
+            {
+                if (productCount != productLength)
+                {
+                    <div class="item-widget" style="width:271px; height:130px;float:left;padding:0px;margin:0px">
+                        <div style="width:170px;float:left;">
+                            @if (@productList[productCount].Image != null)
+                            {
+                                <a href="./Details/@productList[productCount].ID">
+                                    <img class="absolute-center" src="./GetImage?Id=@productList[productCount].ID" style="width:150px;float:left;" />
+                                </a>
+                            }
+                            else
+                            {
+                                @productList[productCount].Image
+                            }
+                        </div>
+                        <div style="width:60px;align-content:center;overflow:hidden;float:right;overflow-wrap:break-word">
+                            <br />
+                            <label>@productList[productCount].Name</label>
+                            <label>@productList[productCount].Price</label>
+                        </div>
+                        @*<div class="item-details" style="width:30px;height:150px;float:right">
+                            <div class="title">@productList[productCount].Name</div>
+                            <div class="price-row">
+                                <div class="discounted-price">
+                                    <span class="price">
+                                        $ @productList[productCount].Price
+                                    </span>
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                            productCount++;
+
+                }
+            }
+        </div>
+
+    }
+@*@foreach (var item in Model)
+    {
+        <div class="widget-wrapper">
+            <div class="widget item-widget">
+                <div>
+                    @if (item.Image != null)
+                    {
+                        <img class="absolute-center" src="./GetImage?Id=@item.ID"/>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Image)
+                    }
+                </div>
+                <div class="item-details">
+                    <div class="title">@Html.DisplayFor(modelItem => item.Name)</div>
+                    <div class="price-row">
+                        <div class="discounted-price">
+                            <span class="price">
+                                $ @Html.DisplayFor(modelItem => item.Price)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }*@

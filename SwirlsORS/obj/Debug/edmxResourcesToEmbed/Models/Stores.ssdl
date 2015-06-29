@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StoresModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="StoresModelStoreContainer">
+    <EntitySet Name="Products" EntityType="StoresModel.Store.Products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="View_ListItem" EntityType="StoresModel.Store.View_ListItem" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CATEGORies" EntityType="StoresModel.Store.CATEGORies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Posts" EntityType="StoresModel.Store.Posts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Titles" EntityType="StoresModel.Store.Titles" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Title_Category" Association="StoresModel.Store.FK_Title_Category">
+      <End Role="CATEGORY" EntitySet="CATEGORies" />
+      <End Role="Title" EntitySet="Titles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_Post" Association="StoresModel.Store.FK_Post_Post">
+      <End Role="Post" EntitySet="Posts" />
+      <End Role="Post1" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_Title" Association="StoresModel.Store.FK_Post_Title">
+      <End Role="Title" EntitySet="Titles" />
+      <End Role="Post" EntitySet="Posts" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Price" Type="decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Image" Type="varbinary(max)" Nullable="true" />
+    <Property Name="DateCreated" Type="datetime" Nullable="true" />
+    <Property Name="LastUpdated" Type="datetime" Nullable="true" />
+    <Property Name="Details" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="View_ListItem">
+    <Key>
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Price" />
+    </Key>
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Price" Type="decimal" Nullable="false" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="CATEGORies">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Posts">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostDetail" Type="varchar(max)" Nullable="true" />
+    <Property Name="MasterPostID" Type="int" Nullable="true" />
+    <Property Name="TitleID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Titles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Title_Category">
+    <End Role="CATEGORY" Type="StoresModel.Store.CATEGORies" Multiplicity="1" />
+    <End Role="Title" Type="StoresModel.Store.Titles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Title">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_Post">
+    <End Role="Post" Type="StoresModel.Store.Posts" Multiplicity="0..1" />
+    <End Role="Post1" Type="StoresModel.Store.Posts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Post1">
+        <PropertyRef Name="MasterPostID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_Title">
+    <End Role="Title" Type="StoresModel.Store.Titles" Multiplicity="1" />
+    <End Role="Post" Type="StoresModel.Store.Posts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Title">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="TitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

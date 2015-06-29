@@ -1,0 +1,10 @@
+C:\Users\priyvasanthan\Documents\Visual Studio 2013\Projects\BootstrapMVC_IISExpress\MyResources\bin\Debug\MyResources.dll
+C:\Users\priyvasanthan\Documents\Visual Studio 2013\Projects\BootstrapMVC_IISExpress\MyResources\bin\Debug\MyResources.pdb
+C:\Users\priyvasanthan\Documents\Visual Studio 2013\Projects\BootstrapMVC_IISExpress\MyResources\obj\Debug\MyResources.csprojResolveAssemblyReference.cache
+C:\Users\priyvasanthan\Documents\Visual Studio 2013\Projects\BootstrapMVC_IISExpress\MyResources\obj\Debug\MyResources.Resources.resources
+C:\Users\priyvasanthan\Documents\Visual Studio 2013\Projects\BootstrapMVC_IISExpress\MyResources\obj\Debug\MyResources.csproj.GenerateResource.Cache
+C:\Users\priyvasanthan\Documents\Visual Studio 2013\Projects\BootstrapMVC_IISExpress\MyResources\obj\Debug\MyResources.dll
+C:\Users\priyvasanthan\Documents\Visual Studio 2013\Projects\BootstrapMVC_IISExpress\MyResources\obj\Debug\MyResources.pdb
+C:\Users\priyvasanthan\Documents\Visual Studio 2013\Projects\BootstrapMVC_IISExpress\MyResources\bin\Debug\ta-IN\MyResources.resources.dll
+C:\Users\priyvasanthan\Documents\Visual Studio 2013\Projects\BootstrapMVC_IISExpress\MyResources\obj\Debug\MyResources.Resources.ta-IN.resources
+C:\Users\priyvasanthan\Documents\Visual Studio 2013\Projects\BootstrapMVC_IISExpress\MyResources\obj\Debug\ta-IN\MyResources.resources.dll

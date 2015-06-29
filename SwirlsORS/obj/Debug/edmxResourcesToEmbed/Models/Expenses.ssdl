@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EXPENZAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CATEGORies">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="100" />
+    <Property Name="RECURRING" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="EXPENSEDETAILs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="EXPENSEID" Type="int" Nullable="false" />
+    <Property Name="ITEMID" Type="int" Nullable="false" />
+    <Property Name="QUANTITY" Type="int" />
+    <Property Name="PRICE" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="CALCULATEDPRICE" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="STATUS" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EXPENSEs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="CATEGORYID" Type="int" Nullable="false" />
+    <Property Name="PROVIDERID" Type="int" Nullable="false" />
+    <Property Name="PRICE" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="DATE" Type="datetime" />
+    <Property Name="TIMESTAMP" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ITEMs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="100" />
+    <Property Name="DESCRIPTION" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="PROVIDERs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="100" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK__EXPENSE__CATEGOR__164452B1">
+    <End Role="CATEGORies" Type="Self.CATEGORies" Multiplicity="1" />
+    <End Role="EXPENSEs" Type="Self.EXPENSEs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORies">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXPENSEs">
+        <PropertyRef Name="CATEGORYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EXPENSE__PROVIDE__173876EA">
+    <End Role="PROVIDERs" Type="Self.PROVIDERs" Multiplicity="1" />
+    <End Role="EXPENSEs" Type="Self.EXPENSEs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVIDERs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXPENSEs">
+        <PropertyRef Name="PROVIDERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EXPENSEDE__EXPEN__1A14E395">
+    <End Role="EXPENSEs" Type="Self.EXPENSEs" Multiplicity="1" />
+    <End Role="EXPENSEDETAILs" Type="Self.EXPENSEDETAILs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EXPENSEs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXPENSEDETAILs">
+        <PropertyRef Name="EXPENSEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EXPENSEDE__ITEMI__1B0907CE">
+    <End Role="ITEMs" Type="Self.ITEMs" Multiplicity="1" />
+    <End Role="EXPENSEDETAILs" Type="Self.EXPENSEDETAILs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ITEMs">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXPENSEDETAILs">
+        <PropertyRef Name="ITEMID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EXPENZAModelStoreContainer">
+    <EntitySet Name="CATEGORies" EntityType="Self.CATEGORies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EXPENSEDETAILs" EntityType="Self.EXPENSEDETAILs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EXPENSEs" EntityType="Self.EXPENSEs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ITEMs" EntityType="Self.ITEMs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROVIDERs" EntityType="Self.PROVIDERs" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__EXPENSE__CATEGOR__164452B1" Association="Self.FK__EXPENSE__CATEGOR__164452B1">
+      <End Role="CATEGORies" EntitySet="CATEGORies" />
+      <End Role="EXPENSEs" EntitySet="EXPENSEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EXPENSE__PROVIDE__173876EA" Association="Self.FK__EXPENSE__PROVIDE__173876EA">
+      <End Role="PROVIDERs" EntitySet="PROVIDERs" />
+      <End Role="EXPENSEs" EntitySet="EXPENSEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EXPENSEDE__EXPEN__1A14E395" Association="Self.FK__EXPENSEDE__EXPEN__1A14E395">
+      <End Role="EXPENSEs" EntitySet="EXPENSEs" />
+      <End Role="EXPENSEDETAILs" EntitySet="EXPENSEDETAILs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EXPENSEDE__ITEMI__1B0907CE" Association="Self.FK__EXPENSEDE__ITEMI__1B0907CE">
+      <End Role="ITEMs" EntitySet="ITEMs" />
+      <End Role="EXPENSEDETAILs" EntitySet="EXPENSEDETAILs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
